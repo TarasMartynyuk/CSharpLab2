@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 
 namespace Lab2
@@ -21,6 +22,8 @@ namespace Lab2
 
         public string Email => _person == null ? throw new PersonNullException() : _person.Email;
 
+        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth => _person?.DateOfBirth ?? throw new PersonNullException();
 
         public bool IsAdult => _person?.IsAdult ?? throw new PersonNullException();
