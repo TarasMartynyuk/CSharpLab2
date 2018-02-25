@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Lab2
+namespace Lab2.ViewModels
 {
     [Serializable]
     public class PersonNullException : Exception

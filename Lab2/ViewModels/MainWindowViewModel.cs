@@ -1,11 +1,10 @@
-﻿
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Lab2.Models;
 
-namespace Lab2
+namespace Lab2.ViewModels
 {
     class MainWindowViewModel : ObservableObject
     {
@@ -21,22 +20,22 @@ namespace Lab2
         public ICommand PersonDataSubmitCommand { get; }
         #endregion
 
-        private PersonInfoViewModel _personInfoVm;
+        private readonly PersonInfoViewModel _personInfoVm;
 
-        public MainWindowViewModel(PersonInfoViewModel personInfoVm)
+        internal MainWindowViewModel(PersonInfoViewModel personInfoVm)
         {
             _personInfoVm = personInfoVm ?? throw new ArgumentNullException(nameof(personInfoVm));
             PersonDataSubmitCommand = new DelegateCommandAsync(CreateAndShowPersonFromInputedData, AllFieldsHaveBeenSet);
         }
 
         #region command delegates
-        public bool AllFieldsHaveBeenSet(object o)
+        private bool AllFieldsHaveBeenSet(object o)
         {
             return ! (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Surname) ||
                 string.IsNullOrEmpty(Email)); // date time always has default value 
         }
 
-        public async Task CreateAndShowPersonFromInputedData(object o)
+        private async Task CreateAndShowPersonFromInputedData(object o)
         {
 
             Console.WriteLine(DateOfBirth);

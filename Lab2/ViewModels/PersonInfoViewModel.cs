@@ -1,19 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
+using Lab2.Models;
 
-namespace Lab2
+namespace Lab2.ViewModels
 {
     /// <summary>
     /// VM that corresponds to window showing all the properties of the person
     /// </summary>
-    class PersonInfoViewModel : ObservableObject
+    internal class PersonInfoViewModel : ObservableObject
     {
         #region binding properties
         public Visibility Visibility
         {
             get => _visibility;
-            set => SetValue(ref _visibility, value);
+            private set => SetValue(ref _visibility, value);
         } 
 
         public string Name => _person == null ? throw new PersonNullException() : _person.Name;
@@ -22,7 +23,6 @@ namespace Lab2
 
         public string Email => _person == null ? throw new PersonNullException() : _person.Email;
 
-        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth => _person?.DateOfBirth ?? throw new PersonNullException();
 
@@ -45,7 +45,7 @@ namespace Lab2
         /// and makes the corresponding view appear on the screen
         /// </summary>
         /// <param name="person"></param>
-        public void ShowPersonInfo(Person person)
+        internal void ShowPersonInfo(Person person)
         {
             _person = person ?? throw new NullReferenceException(nameof(person));
             Visibility = Visibility.Visible;

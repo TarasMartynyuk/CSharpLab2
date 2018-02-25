@@ -1,32 +1,32 @@
 ﻿using System;
 
-namespace Lab2
+namespace Lab2.Models
 {
-    public class Person : ObservableObject
+    internal class Person : ObservableObject
     {
         #region read & write binding properties
-        public string Name 
+        internal string Name 
         {
             get => _name;
-            set => SetValue(ref _name, value);
+            private set => SetValue(ref _name, value);
         }
 
-        public string Surname 
+        internal string Surname 
         {
             get => _surname;
-            set => SetValue(ref _surname, value);
+            private set => SetValue(ref _surname, value);
         }
 
-        public string Email
+        internal string Email
         {
             get => _email;
-            set => SetValue(ref _email, value);
+            private set => SetValue(ref _email, value);
         }
 
-        public DateTime DateOfBirth
+        internal DateTime DateOfBirth
         {
             get => _dateOfBirth;
-            set
+            private set
             {
                 SetValue(ref _dateOfBirth, value);
                 NotifyBirthDateDependentPropertiesChanged();
@@ -35,13 +35,13 @@ namespace Lab2
 
         #endregion
         #region read only binding properties
-        public bool IsAdult => BirthDataUtils.CalculateAge(DateOfBirth) >= 18;
+        internal bool IsAdult => BirthDataUtils.CalculateAge(DateOfBirth) >= 18;
 
-        public bool IsBirthday => BirthDataUtils.IsBirthday(DateOfBirth);
+        internal bool IsBirthday => BirthDataUtils.IsBirthday(DateOfBirth);
 
-        public AstrologicalSign AstrologicalSign => GetAstrologicalSign(DateOfBirth);
+        internal AstrologicalSign AstrologicalSign => GetAstrologicalSign(DateOfBirth);
 
-        public ZodiacSign ZodiacSign => GetZodiacSign(DateOfBirth);
+        internal ZodiacSign ZodiacSign => GetZodiacSign(DateOfBirth);
         #endregion
 
         private string _name;
@@ -50,23 +50,23 @@ namespace Lab2
         private DateTime _dateOfBirth;
 
         #region ctors
-        public Person(string name, string surname, string email, DateTime dateOfBirth) : this(name, surname, email)
+        internal Person(string name, string surname, string email, DateTime dateOfBirth) : this(name, surname, email)
         {
             DateOfBirth = dateOfBirth;
             
         }
 
-        public Person(string name, string surname, string email) : this(name, surname)
+        internal Person(string name, string surname, string email) : this(name, surname)
         {
             Email = email ?? throw new ArgumentNullException(nameof(email));
         }
 
-        public Person(string name, string surname, DateTime dateOfBirth) : this(name, surname)
+        internal Person(string name, string surname, DateTime dateOfBirth) : this(name, surname)
         {
             DateOfBirth = dateOfBirth;
         }
 
-        private Person(string name, string surname)
+        internal Person(string name, string surname)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Surname = surname ?? throw new ArgumentNullException(nameof(surname));

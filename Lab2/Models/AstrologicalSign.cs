@@ -1,4 +1,4 @@
-﻿namespace Lab2
+﻿namespace Lab2.Models
 {
     public enum AstrologicalSign
     {

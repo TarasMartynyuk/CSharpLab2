@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Lab2.ViewModels;
 
 namespace Lab2
 {

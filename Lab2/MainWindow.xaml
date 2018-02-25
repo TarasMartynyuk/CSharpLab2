@@ -3,14 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab2"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="450">
-    <Window.Resources>
-        <Color x:Key="ButtonColor">Bisque</Color>
-    </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="263*"/>
@@ -18,31 +12,32 @@
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="73,27,0,0" TextWrapping="Wrap" 
                    TextAlignment="Center" VerticalAlignment="Top" Text="Your Name" Width="89"/>
-        <TextBox Name="NameBox"  Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="56,48,0,0" 
+        <TextBox Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="56,48,0,0" 
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.465,-0.383"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="26.8,27,0,0" TextWrapping="Wrap" 
                    TextAlignment="Center" VerticalAlignment="Top" Text="Surname" Width="89" Grid.Column="1"/>
-        <TextBox Name="SurNameBox" Text="{Binding Surname}" HorizontalAlignment="Right" Height="23" 
+        <TextBox Text="{Binding Surname}" HorizontalAlignment="Right" Height="23" 
                  Margin="0,48,49.2,0" VerticalAlignment="Top" Width="120" Grid.Column="1"
             TextWrapping="Wrap"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="87,94,0,0" TextWrapping="Wrap" 
+        <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="87,94,0,0" TextWrapping="Wrap" 
                    TextAlignment="Center" VerticalAlignment="Top" Text="And Email" Width="89"/>
-        <TextBox Name="EmailBox" Text="{Binding Email}" HorizontalAlignment="Left" Height="23" Margin="73,115,0,0" 
+        <TextBox Grid.Column="0" Text="{Binding Email}" HorizontalAlignment="Left" Height="23" Margin="73,115,0,0" 
             TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.465,-0.383"/>
         <TextBlock HorizontalAlignment="Left" Margin="9.8,94,0,0" TextWrapping="Wrap" 
                    TextAlignment="Center" VerticalAlignment="Top" Text="+ Date of birth" Width="89" Grid.Column="1"/>
 
-        <DatePicker Name="DateOfBirthBox" SelectedDate="{Binding DateOfBirth}"  HorizontalAlignment="Left" Margin="254,114,0,0" 
-                    VerticalAlignment="Top" RenderTransformOrigin="0.436,0.509" Width="108" Grid.ColumnSpan="2"/>
-        <Button Name="ProceedButton" Command="{Binding PersonDataSubmitCommand}" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Proceed"
-                Width="135" Margin="0,161,0,0" Background="DarkSeaGreen" Height="30" Grid.ColumnSpan="2"/>
+        <DatePicker SelectedDate="{Binding DateOfBirth}"  HorizontalAlignment="Left" Margin="254,114,0,0" 
+                    VerticalAlignment="Top" RenderTransformOrigin="0.436,0.509" Width="108" Grid.ColumnSpan="2"
+                    Grid.Column="0" />
+        <Button Command="{Binding PersonDataSubmitCommand}" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Proceed"
+                Width="135" Margin="0,161,0,0" Background="DarkSeaGreen" Height="30" Grid.ColumnSpan="2" Grid.Column="0" />
 
 
 
         <Grid x:Name="PersonInfoGrid" Visibility="{Binding Visibility}"  HorizontalAlignment="Stretch"
-              Margin="10,209,0.2,-0.2" Grid.ColumnSpan="2">
+              Margin="10,209,0.2,-0.2" Grid.ColumnSpan="2" Grid.Column="0">
             <TextBlock HorizontalAlignment="Center" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" 
                      Text="Here's your person stats:" VerticalAlignment="Top" Width="200" TextAlignment="Center"/>
             <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextAlignment="Center"
